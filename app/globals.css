@@ -1,0 +1,94 @@
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background:rgb(22, 20, 20);
+  color: aliceblue;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("../public/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.uploadBtn {
+  padding: 10px;
+}
+.wrapper {
+  padding: 15px;
+  position: relative;
+  min-height: 100vh;
+}
+header {
+  display: flex;
+  margin-bottom: 10px;
+}
+header h1 {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  
+  gap: 5px; /* Отступы между изображениями */
+  margin-top: 20px;
+}
+.gallery_item {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid rgb(38, 46, 5);
+  display: flex;
+  width: calc(20% - 5px);
+  height: 200px;
+}
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10,10,10, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+.thumbnail {
+  width: 100%; /* Растягивается на всю ширину */
+  height: auto; /* Сохраняет пропорции */
+  object-fit: cover; /* Обрезает изображение для заполнения области */
+}
+.close-button {
+  padding: 10px;
+  margin-top: -6px;
+}
+@media(max-width: 900px){
+  .gallery_item {
+    width: calc(25% - 5px );
+  }
+}
+@media(max-width: 730px){
+  .gallery_item {
+    width: calc(33% - 5px );
+  }
+}
+@media(max-width: 600px){
+  .gallery_item {
+    width: calc(50% - 5px );
+  }
+}
