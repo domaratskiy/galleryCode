@@ -10,7 +10,7 @@ export default function GalleryClient({ images }) {
     <main >
         <div className="gallery">
             {images.map((image, index) => {
-                const thumbnailUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,q_auto/${image.public_id}`;
+                const thumbnailUrl = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,q_auto/${image.public_id}`;
                 return (
                     <div className="gallery_item" key={image.public_id}>
                         <img
