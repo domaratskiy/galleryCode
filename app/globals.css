@@ -4,6 +4,7 @@ body {
   overflow-x: hidden;
   background:rgb(22, 20, 20);
   color: aliceblue;
+  font-size: 16px;
 }
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -23,6 +24,14 @@ a {
 }
 .uploadBtn {
   padding: 10px;
+  letter-spacing: 2px;
+  background-color: #bbda4b;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+}
+.uploadBtn:hover{
+  background-color: #80972e;
 }
 .wrapper {
   padding: 15px;
@@ -32,16 +41,17 @@ a {
 header {
   display: flex;
   margin-bottom: 10px;
+  align-items: center;
 }
 header h1 {
-  margin-bottom: 10px;
   margin-right: 10px;
+  font-size: 16px;
+  padding: 10px;
 }
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  
-  gap: 5px; /* Отступы между изображениями */
+  gap: 2px; 
   margin-top: 20px;
 }
 .gallery_item {
@@ -51,43 +61,81 @@ header h1 {
   display: flex;
   width: calc(20% - 5px);
   height: 200px;
+  transition: all 0.3s;
+  cursor: pointer;
 }
+.gallery_item:hover{
+  transform: scale(1.1);
+}
+
+
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(10,10,10, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Темный фон с прозрачностью */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.modal-content {
-  display: flex;
-  flex-direction: column;
+  z-index: 1000; /* Поверх остальных элементов */
 }
 .thumbnail {
-  width: 100%; /* Растягивается на всю ширину */
-  height: auto; /* Сохраняет пропорции */
-  object-fit: cover; /* Обрезает изображение для заполнения области */
+  background-color: #fff; /* Белый фон */
+  padding: 3px;
+  border-radius: 3px; /* Скругленные углы */
+  max-width: 500px; /* Максимальная ширина окна */
+  width:100%; /* Адаптивность */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+  animation: fadeIn 0.3s ease; /* Плавное появление */
+  object-fit: cover; 
+
 }
-.close-button {
+.modal-content {
+  position: relative;
+  background-color: #6596be;;
+  padding: 4px;
+border-radius: 4px;
+}
+.modal-content img {
+  width: 100%;
+  object-fit: cover; 
+  height: auto;
+  display: block;
+}
+.close-button:hover {
+  background-color: #8da82c;
+
+}
+.close-button  {
+  position: absolute;
+  top: 3px;
+  right: 3px;
   padding: 10px;
-  margin-top: -6px;
+  background-color: #bbda4b;
+  border: none;
+  font-size: 16px;
+  color: #0a0202; /* Цвет кнопки */
+  cursor: pointer;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  border:1px solid black
 }
+
+
 @media(max-width: 900px){
   .gallery_item {
-    width: calc(25% - 5px );
+    width: calc(25% - 2px );
   }
 }
 @media(max-width: 730px){
   .gallery_item {
-    width: calc(33% - 5px );
+    width: calc(33% - 2px );
   }
 }
 @media(max-width: 600px){
   .gallery_item {
-    width: calc(50% - 5px );
+    width: calc(50% - 2px );
   }
 }
