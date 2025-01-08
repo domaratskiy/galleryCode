@@ -1,11 +1,11 @@
-// Modal.js
+""
 "use client"; // Если используете Next.js
 import React from "react";
 
 export default function Modal({ selectedImage, onClose }) {
   if (!selectedImage) return null;
 
-  const largeImageUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/w_1024,c_limit,q_auto:best/${selectedImage}`;
+  const largeImageUrl = `https://res.cloudinary.com/dpjbbj1hl/image/upload/w_1024,c_limit,q_auto:best/${selectedImage}`;
 
   return (
     <div className="modal" onClick={onClose}>
