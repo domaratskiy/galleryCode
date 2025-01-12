@@ -35,13 +35,12 @@ a {
 }
 .wrapper {
   padding: 15px;
-  position: relative;
   min-height: 100vh;
 }
 header {
   display: flex;
-  margin-bottom: 10px;
   align-items: center;
+  padding: 10px;
 }
 header h1 {
   margin-right: 10px;
@@ -51,22 +50,20 @@ header h1 {
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   gap: 2px; 
-  margin-top: 20px;
 }
 .gallery_item {
   overflow: hidden;
   border-radius: 8px;
   border: 2px solid rgb(38, 46, 5);
   display: flex;
-  width: calc(20% - 5px);
+  width: calc(20% - 2px);
   height: 200px;
   transition: all 0.3s;
   cursor: pointer;
 }
-.gallery_item:hover{
-  transform: scale(1.1);
-}
+
 
 
 .thumbnail {

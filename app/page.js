@@ -1,27 +1,62 @@
-import GalleryClient from "./component/galleryClient";
-import GalleryBtn from "./component/uploadBtn";
-import cloudinary from "cloudinary";
+"use client";
 
-export default async function Page() {
+import { useEffect, useState } from "react";
+import Modal from "./component/modal"
+import GalleryBtn from "./component/uploadBtn"
 
+export default function GalleryClient() {
+  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  // Запрос изображений
-  const cloudinaryData = await cloudinary.v2.search
-    .expression("resource_type:image")
-    .sort_by("public_id", "desc")
-    .max_results(100)
-    .execute();
+  useEffect(() => {
+    async function fetchImages() {
+      try {
+        const response = await fetch("/api/cloudinary-images");
+        const data = await response.json();
+        setImages(data);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    }
 
-  const results = cloudinaryData.resources;
+    fetchImages();
+  }, []);
 
-  // Передача данных в клиентский компонент
   return (
-    <div className="wrapper">
-      <header>
-        <GalleryBtn/>
-        <h1>Мои фото</h1>
-      </header>
-      <GalleryClient images={results} />
-    </div>
+    <>
+    <header>
+      <h1>фото</h1>
+      <GalleryBtn/>
+    </header>
+    <main>
+      <div className="wrapper">
+
+      
+      <div className="gallery">
+        {images.map((image) => {
+          const thumbnailUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_fill,q_auto/${image.public_id}`;
+          return (
+            <div className="gallery_item" key={image.public_id}>
+              <img
+                src={thumbnailUrl}
+                alt="Thumbnail"
+                onClick={() => setSelectedImage(image.public_id)}
+                className="thumbnail"
+              />
+            </div>
+          );
+        })}
+      </div>
+
+        {selectedImage && (
+          <Modal
+            selectedImage={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${selectedImage}`}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+      </div>
+    </main>    
+    </>
+
   );
 }
